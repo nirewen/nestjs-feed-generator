@@ -23,7 +23,8 @@ import { WellKnownMiddleware } from './well-known.middleware'
 export class AtProtoModule implements NestModule {
     configure(consumer: MiddlewareConsumer) {
         consumer.apply(WellKnownMiddleware).forRoutes('')
-        consumer.apply(AuthMiddleware).forRoutes('')
+        // comment this line if not using auth
+        consumer.apply(AuthMiddleware).forRoutes('xrpc')
         consumer.apply(AtProtoMiddleware).forRoutes('')
     }
 }

@@ -4,7 +4,11 @@ import { AppContext } from '../util/config'
 // max 15 chars
 export const shortname = 'whats-alf'
 
-export const handler = async (ctx: AppContext, params: QueryParams) => {
+export const handler = async (
+    ctx: AppContext,
+    params: QueryParams,
+    requesterDid: string,
+) => {
     let builder = ctx.db
         .selectFrom('post')
         .selectAll()

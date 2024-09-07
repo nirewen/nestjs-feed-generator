@@ -22,8 +22,15 @@ export class FeedGenerationService {
                     'UnsupportedAlgorithm',
                 )
             }
+            /**
+             * Get the DID of the requester, for user-specific results:
+             * Auth is handled by auth.middleware.ts
+             * If your feed doesn't need Authentication, remove from atproto.module.ts
+             */
+            const requesterDid = req.headers['x-did'] as string
 
-            const body = await algo(ctx, params)
+            const body = await algo(ctx, params, requesterDid)
+
             return {
                 encoding: 'application/json',
                 body: body,
